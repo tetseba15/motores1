@@ -609,8 +609,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../Sonidos/fmod/motores1-audio/motores1-audio.fspro
-  sourceBankPath: ../../Sonidos/fmod/motores1-audio/Build
+  sourceProjectPath: FMOD/motores1-audio.fspro
+  sourceBankPath: FMOD/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
