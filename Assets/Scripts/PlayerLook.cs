@@ -9,8 +9,12 @@ public class PlayerLook : MonoBehaviour
     private Transform _cameraRoot;
 
     [Header("Cam Config")]
-    [field: SerializeField, Tooltip("Base Sensitivity")]
+    [field: SerializeField, Range(1f, 100f  ), Tooltip("Base Sensitivity")]
     public float LookSensitivity { get; private set; } = 15f;
+
+    [field: SerializeField, Range(100f, 500f), Tooltip("Base Sensitivity")]
+    public float GamepadMultiplier { get; private set; } = 300f;
+
 
     [field: SerializeField, Tooltip("Neck limit")]
     public float UpDownLimit { get; private set; } = 85f;
@@ -37,15 +41,16 @@ public class PlayerLook : MonoBehaviour
     {
         Vector2 lookInput = _inputHandler.LookInput;
 
-        float mouseX = lookInput.x * LookSensitivity;
-        float mouseY = lookInput.y * LookSensitivity;
+        float internalScaler = 0.05f;
+
+        float mouseX = lookInput.x * LookSensitivity * internalScaler;
+        float mouseY = lookInput.y * LookSensitivity * internalScaler;
 
         //GAMEPAD FIX 
         if (_inputHandler.IsGamepad)
         {
-            float gamepadMultiplier = 50f; 
-            mouseX *= Time.deltaTime * gamepadMultiplier;
-            mouseY *= Time.deltaTime * gamepadMultiplier;
+            mouseX *= Time.deltaTime * GamepadMultiplier;
+            mouseY *= Time.deltaTime * GamepadMultiplier;
         }
 
         //Warning: Positive rotations in X axis makes you look down,

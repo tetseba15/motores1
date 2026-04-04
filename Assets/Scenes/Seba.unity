@@ -509,7 +509,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLook
   _cameraRoot: {fileID: 1666206652}
-  <LookSensitivity>k__BackingField: 1
+  <LookSensitivity>k__BackingField: 4
+  <GamepadMultiplier>k__BackingField: 300
   <UpDownLimit>k__BackingField: 85
 --- !u!1 &935114733
 GameObject:
