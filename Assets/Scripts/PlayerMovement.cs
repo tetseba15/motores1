@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 input = _inputHandler.MoveInput;
         
-        Vector3 moveDirection = transform.right * input.x + transform.up * input.y;
+        Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
         float currentSpeed = _inputHandler.IsSprinting ? SprintSpeed : WalkSpeed;
 

@@ -1,11 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInputActions _inputActions;
 
-    public Vector2 MoveInput {  get; private set; }
-    public Vector2 LookInput {  get; private set; }
+    public Vector2 MoveInput { get; private set; }
+    public Vector2 LookInput { get; private set; }
+
+    public bool IsGamepad { get; private set; }
+
     public bool IsSprinting { get; private set; }
     public bool IsCrouching { get; private set; }
     public bool IsInteracting { get; private set; }
@@ -39,6 +43,13 @@ public class PlayerInputHandler : MonoBehaviour
     void Update()
     {
         MoveInput = _inputActions.Gameplay.Move.ReadValue<Vector2>();
-        LookInput = _inputActions.Gameplay.Look.ReadValue<Vector2>();
+
+        var lookAction = _inputActions.Gameplay.Look;
+        LookInput = lookAction.ReadValue<Vector2>();
+
+        if(lookAction.activeControl != null)
+        {
+            IsGamepad = lookAction.activeControl.device is Gamepad;
+        }
     }
 }
