@@ -9,12 +9,15 @@ public class EnemyAI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _playerTransform;
+
+    [Space(20)]
     [SerializeField] private Transform[] _patrolWaypoints;
 
     [Header("Vision Settings")]
     [SerializeField, Range(1f, 50f)] private float _viewRadious = 15f;
     [SerializeField, Range(1f, 360f)] private float _viewAngle = 90f;
 
+    [Space(10)]
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstacleMask;
 
@@ -114,4 +117,32 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _viewRadious);
+
+        Vector3 viewAngleLeft = DirFromAngle(transform.eulerAngles.y, -_viewAngle / 2f);
+        Vector3 viewAngleRight = DirFromAngle(transform.eulerAngles.y, _viewAngle / 2f);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleLeft * _viewAngle);
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleRight * _viewAngle);
+
+        if(_playerTransform != null && _currentState == AIState.Chase)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, _playerTransform.position);
+        }
+    }
+
+
+    private Vector3 DirFromAngle(float eulerY, float angleInDegrees)
+    {
+
+        angleInDegrees += eulerY;
+
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+
+    }
 }

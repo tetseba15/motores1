@@ -2305,6 +2305,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7174895013602801984, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174895013602801984, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 671939929}
@@ -2327,6 +2331,10 @@ PrefabInstance:
     - target: {fileID: 9074971200828429894, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9074971200828429894, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2429,8 +2437,8 @@ SceneRoots:
   - {fileID: 1979154523}
   - {fileID: 12115165}
   - {fileID: 9014765980505611073}
+  - {fileID: 7160018686801791114}
   - {fileID: 1065408810}
   - {fileID: 1406407900}
   - {fileID: 553958283}
-  - {fileID: 7160018686801791114}
   - {fileID: 191092430}
