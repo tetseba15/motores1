@@ -2309,6 +2309,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7174895013602801984, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
+      propertyPath: _viewAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174895013602801984, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
+      propertyPath: _viewRadious
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174895013602801984, guid: b26805f9547405c4ba428d3beb2420dd, type: 3}
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 671939929}

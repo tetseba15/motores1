@@ -5,7 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
-    private enum AIState { Patrol, Chase }
+    private enum AIState { Patrol, Chase, Idle }
 
     [Header("References")]
     [SerializeField] private Transform _playerTransform;
@@ -117,6 +117,7 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    #region Debug Gizmos
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
@@ -145,4 +146,5 @@ public class EnemyAI : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
 
     }
+    #endregion
 }
