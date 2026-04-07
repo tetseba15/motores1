@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 2877145932029325764}
   - component: {fileID: 1546947138145397870}
   - component: {fileID: 1564518249920402732}
+  - component: {fileID: 6621954272069010438}
   - component: {fileID: 622221749305301956}
   m_Layer: 0
   m_Name: Player
@@ -521,6 +522,23 @@ MonoBehaviour:
   <LookSensitivity>k__BackingField: 4
   <GamepadMultiplier>k__BackingField: 300
   <UpDownLimit>k__BackingField: 85
+--- !u!114 &6621954272069010438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183052375407318054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6a30d58d9b33745aaf93284bfc3084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
+  _mainCamera: {fileID: 0}
+  <InteractionDistance>k__BackingField: 2.5
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!143 &622221749305301956
 CharacterController:
   m_ObjectHideFlags: 0

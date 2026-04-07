@@ -52,4 +52,9 @@ public class PlayerInputHandler : MonoBehaviour
             IsGamepad = lookAction.activeControl.device is Gamepad;
         }
     }
+
+    public void ConsumeInteractInput()
+    {
+        IsInteracting = false;
+    }
 }
