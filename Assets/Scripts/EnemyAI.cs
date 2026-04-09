@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Transform _playerTransform;
+    [SerializeField] private Transform _lookAtTarget;
 
     [Space(20)]
     [SerializeField] private Transform[] _patrolWaypoints;
@@ -59,6 +60,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
         _animator.SetFloat("Speed", _agent.velocity.magnitude / _agent.speed);
+        UpdateLookAt();
     }
     private void CheckSensors()
     {
@@ -118,6 +120,19 @@ public class EnemyAI : MonoBehaviour
             _agent.SetDestination(_patrolWaypoints[_currentWaypointIndex].position);
         }
 
+    }
+    private void UpdateLookAt()
+    {
+        if (_lookAtTarget == null) return;
+
+        if (_currentState == AIState.Chase)
+        {
+            _lookAtTarget.position = Vector3.Lerp(
+                _lookAtTarget.position,
+                _playerTransform.position + Vector3.up * 1.5f,
+                Time.deltaTime * 5f
+            );
+        }
     }
 
     #region Debug Gizmos
