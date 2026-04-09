@@ -22,12 +22,14 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask _obstacleMask;
 
     private NavMeshAgent _agent;
+    private Animator _animator;
     private AIState _currentState;
     private int _currentWaypointIndex;
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponentInChildren<Animator>();
         _currentState = AIState.Patrol;
     }
 
@@ -56,6 +58,7 @@ public class EnemyAI : MonoBehaviour
                 HandleChase();
                 break;
         }
+        _animator.SetFloat("Speed", _agent.velocity.magnitude / _agent.speed);
     }
     private void CheckSensors()
     {
