@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5e8ec1fc007327845bb4ee836d7e0587
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 200373
+  packageName: Horror Girl
+  packageVersion: 1.0
+  assetPath: Assets/HorrorGirl/Stand/Standard-2Sided.shader
+  uploadId: 557347

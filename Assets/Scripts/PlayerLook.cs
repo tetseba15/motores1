@@ -12,7 +12,7 @@ public class PlayerLook : MonoBehaviour
     [field: SerializeField, Range(1f, 100f  ), Tooltip("Base Sensitivity")]
     public float LookSensitivity { get; private set; } = 15f;
 
-    [field: SerializeField, Range(100f, 500f), Tooltip("Base Sensitivity")]
+    [field: SerializeField, Range(100f, 500f), Tooltip(" Gamepad Base Sensitivity")]
     public float GamepadMultiplier { get; private set; } = 300f;
 
 
