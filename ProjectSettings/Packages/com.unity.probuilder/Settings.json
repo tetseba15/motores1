@@ -129,7 +129,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-1.749481201171875,\"y\":22.502206802368165,\"z\":-92.63359832763672}}"
+                "value": "{\"m_Value\":{\"x\":3.8177337646484377,\"y\":16.169668197631837,\"z\":-4.412567138671875}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -144,7 +144,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Plane",
-                "value": "{\"m_Value\":{\"x\":-10.860809326171875,\"y\":0.0,\"z\":-26.303634643554689}}"
+                "value": "{\"m_Value\":{\"x\":216.97543334960938,\"y\":0.0,\"z\":-63.40495300292969}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -154,7 +154,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Torus",
-                "value": "{\"m_Value\":{\"x\":2.999302387237549,\"y\":0.9207078218460083,\"z\":3.9437332153320314}}"
+                "value": "{\"m_Value\":{\"x\":-55.99348449707031,\"y\":0.0,\"z\":-41.162750244140628}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -174,7 +174,7 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cylinder",
-                "value": "{\"m_Value\":{\"x\":8.838211059570313,\"y\":42.69694519042969,\"z\":9.030220031738282}}"
+                "value": "{\"m_Value\":{\"x\":9.456069946289063,\"y\":15.060733795166016,\"z\":-8.16796875}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
