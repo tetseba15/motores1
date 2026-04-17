@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject _notePanel;
     [SerializeField] private TextMeshProUGUI _noteText;
+    [SerializeField] private TextMeshProUGUI _interactPromptText;
 
     // Others can know if player is reading something
     public bool IsReadingNote { get; private set; }
@@ -34,6 +35,8 @@ public class UIManager : MonoBehaviour
         {
             _inputHandler = player.GetComponent<PlayerInputHandler>();
         }
+
+        HideInteractPrompt();
     }
 
     private void Update()
@@ -55,5 +58,15 @@ public class UIManager : MonoBehaviour
     {
         _notePanel.SetActive(false);
         IsReadingNote = false;
+    }
+
+    public void ShowInteractPrompt(string message)
+    {
+        _interactPromptText.text = message;
+        _interactPromptText.gameObject.SetActive(true);
+    }
+    public void HideInteractPrompt()
+    {
+        _interactPromptText.gameObject.SetActive(false);
     }
 }
