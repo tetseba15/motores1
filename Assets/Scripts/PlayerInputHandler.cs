@@ -14,6 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsCrouching { get; private set; }
     public bool IsInteracting { get; private set; }
     public bool CancelInput { get; private set; }
+    public bool FlashlightInput { get; private set; }
 
     private void Awake()
     {
@@ -54,6 +55,8 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         CancelInput = _inputActions.Gameplay.Cancel.WasPressedThisFrame();
+
+        FlashlightInput = _inputActions.Gameplay.Flashlight.WasPressedThisFrame();
     }
 
     public void ConsumeInteractInput()
