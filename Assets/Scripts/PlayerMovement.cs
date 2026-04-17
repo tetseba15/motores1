@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote) return;
+
         HandleMovement();
         HandleGravity();
     }

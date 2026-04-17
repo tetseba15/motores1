@@ -34,6 +34,8 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
+        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote) return;
+
         HandleCamera();
     }
 

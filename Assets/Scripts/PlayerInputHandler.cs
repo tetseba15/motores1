@@ -13,6 +13,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool IsSprinting { get; private set; }
     public bool IsCrouching { get; private set; }
     public bool IsInteracting { get; private set; }
+    public bool CancelInput { get; private set; }
 
     private void Awake()
     {
@@ -51,6 +52,8 @@ public class PlayerInputHandler : MonoBehaviour
         {
             IsGamepad = lookAction.activeControl.device is Gamepad;
         }
+
+        CancelInput = _inputActions.Gameplay.Cancel.WasPressedThisFrame();
     }
 
     public void ConsumeInteractInput()

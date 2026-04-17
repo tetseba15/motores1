@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour, IInteractable
 {
-    [Header("Configuración")]
+    [Header("Settings")]
     [SerializeField] private PlayerInventory.ItemType _requiredKey = PlayerInventory.ItemType.MansionKey;
     [SerializeField] private string _lockedMessage = "Está cerrada con llave.";
     [SerializeField] private string _unlockedMessage = "Abrir puerta";
