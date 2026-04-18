@@ -21,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity; 
     private bool _isGrounded;
 
+    [Header("Animación")]
+    [SerializeField] private Animator _animator;
+    [SerializeField, Tooltip("Transition Speed")]
+    private float _animationBlendSpeed = 10f;
+
+    private float _currentAnimationSpeed;
 
     private void Awake()
     {
@@ -32,7 +38,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote) return;
+        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote)
+        {
+            // Si está leyendo, forzamos la animación a Idle gradualmente
+            UpdateAnimator(0f);
+            return;
+        }
 
         HandleMovement();
         HandleGravity();
@@ -45,10 +56,39 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
-        float currentSpeed = _inputHandler.IsSprinting ? SprintSpeed : WalkSpeed;
+        float targetSpeed = 0f;
 
-        _controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+        if (input.magnitude > 0.1f)
+        {
+            targetSpeed = _inputHandler.IsSprinting ? SprintSpeed : WalkSpeed;
+            _controller.Move(moveDirection * targetSpeed * Time.deltaTime);
+
+            // Footsteps SFX
+        }
+
+        UpdateAnimator(targetSpeed);
+
     }
+
+    private void UpdateAnimator(float targetSpeed)
+    {
+        if (_animator == null) return;
+
+        
+        _currentAnimationSpeed = Mathf.Lerp(_currentAnimationSpeed, targetSpeed, Time.deltaTime * _animationBlendSpeed);
+
+        _animator.SetFloat("Speed", _currentAnimationSpeed);
+    }
+
+    public void TriggerDeath()
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Die");
+            this.enabled = false;
+        }
+    }
+
     private void HandleGravity()
     {
         _isGrounded = _controller.isGrounded;
