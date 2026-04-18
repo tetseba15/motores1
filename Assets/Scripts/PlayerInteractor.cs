@@ -45,8 +45,8 @@ public class PlayerInteractor : MonoBehaviour
                 {
                     _currentInteractable = interactable;
 
-                    //CALL AN UIMANAGER TO SHOW THE TEXT
-                    //UIManager.Instance.ShowPrompt(_currentInteractable.GetInteractPrompt())
+                    //CALL UIMANAGER TO SHOW THE TEXT
+                    UIManager.Instance.ShowInteractPrompt(_currentInteractable.GetInteractPrompt());
                 }
 
                 return;
@@ -58,7 +58,7 @@ public class PlayerInteractor : MonoBehaviour
         {
             _currentInteractable = null;
             //HIDE TEXT
-            //UIManager.Instance.HidePrompt();
+            UIManager.Instance.HideInteractPrompt();
         }
     }
 

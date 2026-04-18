@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class Note : MonoBehaviour, IInteractable
 {
+    [Header("Interact prompt")]
+    [SerializeField] private string _promptText = "[E] Recoger objeto";
+
+
     [Header("Note Content")]
 
     [SerializeField, TextArea(3, 10)]
@@ -9,7 +13,7 @@ public class Note : MonoBehaviour, IInteractable
 
     public string GetInteractPrompt()
     {
-        return "Leer nota de mi mentor";
+        return _promptText;
     }
 
     public void Interact()
@@ -17,6 +21,7 @@ public class Note : MonoBehaviour, IInteractable
         if (!UIManager.Instance.IsReadingNote)
         {
             UIManager.Instance.ShowNote(_noteContent);
+            UIManager.Instance.HideInteractPrompt();
         }
     }
 }
