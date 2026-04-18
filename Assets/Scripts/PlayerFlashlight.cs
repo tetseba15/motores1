@@ -10,14 +10,20 @@ public class PlayerFlashlight : MonoBehaviour
 
     [Header("Batery Settings")]
     [SerializeField] private float _maxBattery = 100f;
+
     [SerializeField, Tooltip("Battery drain per second")]
     private float _drainRate = 1f;
+
     [SerializeField, Tooltip("% when the flashlights begins to malfunction")]
     private float _flickerThreshold = 20f;
+
+    [SerializeField, Range(0f, 1f), Tooltip("Min intensity")]
+    private float _minIntensityMultiplier = 0.2f;
 
     private float _currentBattery;
     private bool _isOn = false;
     private float _baseIntensity;
+    private float _baseRange;
 
     private PlayerInputHandler _inputHandler;
     private PlayerInventory _inventory;
@@ -30,7 +36,8 @@ public class PlayerFlashlight : MonoBehaviour
         if (_lightComponent != null)
         {
             _baseIntensity = _lightComponent.intensity;
-            _lightComponent.enabled = false; 
+            _baseRange = _lightComponent.range;
+            _lightComponent.enabled = false;
         }
 
         _currentBattery = _maxBattery;
@@ -69,18 +76,27 @@ public class PlayerFlashlight : MonoBehaviour
         {
             _currentBattery = 0f;
             TurnOff();
-            return; 
+            return;
         }
+
+        //Calculate current battery % 
+        float batteryNormalized = _currentBattery / _maxBattery;
+
+        //Soft decay with Lerp
+        float targetIntensity = Mathf.Lerp(_baseIntensity * _minIntensityMultiplier, _baseIntensity, batteryNormalized);
+        float targetRange = Mathf.Lerp(_baseRange * 0.5f, _baseRange, batteryNormalized);
+
 
         if (_currentBattery <= _flickerThreshold)
         {
             // Mathf.PerlinNoise generates a soft curve, good for broken lights
-            float noise = Mathf.PerlinNoise(Time.time * 10f, 0f);
-            _lightComponent.intensity = Mathf.Lerp(0f, _baseIntensity, noise);
+            float noise = Mathf.PerlinNoise(Time.time * 15f, 0f);
+            _lightComponent.intensity = targetIntensity * noise;
         }
         else
         {
-            _lightComponent.intensity = _baseIntensity;
+            _lightComponent.intensity = targetIntensity;
+            _lightComponent.range = targetRange;
         }
     }
 

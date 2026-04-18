@@ -18,36 +18,64 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Physics Config")]
     [SerializeField] private float gravity = -9.81f;
-    private Vector3 _velocity; 
+    private Vector3 _velocity;
     private bool _isGrounded;
 
+    [Header("Animations")]
+    [SerializeField] private Animator _animator;
+    [SerializeField, Tooltip("Animation transition speed")]
+    private float _animationBlendSpeed = 10f;
+
+    private float _currentAnimationSpeed;
 
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _inputHandler = GetComponent<PlayerInputHandler>();
+        //_animator = GetComponent<Animator>();
 
     }
 
 
     void Update()
     {
-        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote) return;
+        if (UIManager.Instance != null && UIManager.Instance.IsReadingNote)
+        {
+            UpdateAnimator(0f);
+            return;
+        }
 
         HandleMovement();
         HandleGravity();
     }
 
+    private void UpdateAnimator(float targetSpeed)
+    {
+        if (_animator == null) return;
+
+        // Lerp helps smooth transitions between idle-walk-run
+        _currentAnimationSpeed = Mathf.Lerp(_currentAnimationSpeed, targetSpeed, Time.deltaTime * _animationBlendSpeed);
+
+        _animator.SetFloat("Speed", _currentAnimationSpeed);
+    }
 
     private void HandleMovement()
     {
         Vector2 input = _inputHandler.MoveInput;
-        
+
         Vector3 moveDirection = transform.right * input.x + transform.forward * input.y;
 
-        float currentSpeed = _inputHandler.IsSprinting ? SprintSpeed : WalkSpeed;
+        float targetSpeed = 0f;
 
-        _controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+        if (input.magnitude > 0.1f)
+        {
+            targetSpeed = _inputHandler.IsSprinting ? SprintSpeed : WalkSpeed;
+            _controller.Move(moveDirection * targetSpeed * Time.deltaTime);
+
+            // Footsteps SFX
+        }
+
+        UpdateAnimator(targetSpeed);
     }
     private void HandleGravity()
     {
@@ -63,4 +91,14 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(_velocity * Time.deltaTime);
 
     }
+
+    public void TriggerDeath()
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger("Die");
+            this.enabled = false;
+        }
+    }
+
 }
