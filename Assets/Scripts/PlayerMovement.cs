@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float _currentAnimationSpeed;
 
+    public float CurrentSpeed => _currentAnimationSpeed;
+
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (UIManager.Instance != null && UIManager.Instance.IsReadingNote)
         {
-            // Si está leyendo, forzamos la animación a Idle gradualmente
+            
             UpdateAnimator(0f);
             return;
         }
