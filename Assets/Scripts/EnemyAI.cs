@@ -28,6 +28,11 @@ public class EnemyAI : MonoBehaviour
     private int _currentWaypointIndex;
     private bool _playerInSafeZone = false;
 
+    [Header("Flashlight Settings")]
+    [SerializeField] private PlayerFlashlight _playerFlashlight;
+    [SerializeField] private float _flashlightRepelDistance = 10f;
+    [SerializeField] private float _flashlightRepelSpeed = 5f;
+
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -46,6 +51,7 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         CheckSensors();
+        CheckFlashlight();
 
         switch (_currentState)
         {
@@ -82,6 +88,33 @@ public class EnemyAI : MonoBehaviour
 
         if (_currentState == AIState.Chase && distanceToPlayer > _viewRadious * 1.5f)
         {
+            ChangeState(AIState.Patrol);
+        }
+    }
+
+    private void CheckFlashlight()
+    {
+        if (_playerFlashlight == null || !_playerFlashlight.IsOn()) return;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, _playerTransform.position);
+        if (distanceToPlayer > _flashlightRepelDistance) return;
+
+        // Verificar si la linterna apunta hacia la nena
+        Vector3 directionToEnemy = (transform.position - _playerTransform.position).normalized;
+        float angle = Vector3.Angle(_playerTransform.forward, directionToEnemy);
+
+        if (angle < 30f)
+        {
+            // La linterna apunta a la nena, alejarse
+            Vector3 fleeDirection = (transform.position - _playerTransform.position).normalized;
+            Vector3 fleeTarget = transform.position + fleeDirection * _flashlightRepelDistance;
+
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(fleeTarget, out hit, _flashlightRepelDistance, NavMesh.AllAreas))
+            {
+                _agent.SetDestination(hit.position);
+            }
+
             ChangeState(AIState.Patrol);
         }
     }

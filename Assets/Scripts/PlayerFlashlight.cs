@@ -103,4 +103,5 @@ public class PlayerFlashlight : MonoBehaviour
     {
         _currentBattery = Mathf.Clamp(_currentBattery + amount, 0f, _maxBattery);
     }
+    public bool IsOn() => _isOn;
 }
