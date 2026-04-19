@@ -8,6 +8,7 @@ public class Note : MonoBehaviour, IInteractable
     private string _noteContent;
     [Header("Mannequin")]
     [SerializeField] private GameObject _mannequin;
+    private bool _mannequinSpawned = false;
 
     public string GetInteractPrompt()
     {
@@ -19,9 +20,10 @@ public class Note : MonoBehaviour, IInteractable
         {
             UIManager.Instance.ShowNote(_noteContent);
             UIManager.Instance.HideInteractPrompt();
-            if (_mannequin != null)
+            if (_mannequin != null && !_mannequinSpawned)
             {
                 _mannequin.SetActive(true);
+                _mannequinSpawned = true;
             }
         }
     }
