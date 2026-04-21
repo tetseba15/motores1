@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Note : MonoBehaviour, IInteractable
 {
     [Header("Interact prompt")]
@@ -8,12 +10,16 @@ public class Note : MonoBehaviour, IInteractable
     private string _noteContent;
     [Header("Mannequin")]
     [SerializeField] private GameObject _mannequin;
+    [Header("End Demo")]
+    [SerializeField] private bool _isEndNote = false;
     private bool _mannequinSpawned = false;
+    private bool _waitingToRestart = false;
 
     public string GetInteractPrompt()
     {
         return _promptText;
     }
+
     public void Interact()
     {
         if (!UIManager.Instance.IsReadingNote)
@@ -25,6 +31,19 @@ public class Note : MonoBehaviour, IInteractable
                 _mannequin.SetActive(true);
                 _mannequinSpawned = true;
             }
+            if (_isEndNote)
+            {
+                _waitingToRestart = true;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (_waitingToRestart && !UIManager.Instance.IsReadingNote)
+        {
+            _waitingToRestart = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
