@@ -170,6 +170,13 @@ public class EnemyAI : MonoBehaviour
     {
         _playerInSafeZone = value;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.GameOver();
+        }
+    }
 
     #region Debug Gizmos
     private void OnDrawGizmosSelected()
