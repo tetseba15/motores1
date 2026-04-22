@@ -1,33 +1,59 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
-public class DangerClose : MonoBehaviour
+public class DangerClose : AudioHeart
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    [Header("Referencias")]
     public Transform jugador;
     public Transform enemigo;
-    public float distanciaUmbral = 5f; // A qué distancia empieza a latir
+    public AudioSource audioHeart; // Asegúrate de arrastrar el AudioSource aquí en el Inspector
+
+    [Header("Configuración")]
+    public float detectionRange = 10f;
+
     private Animator animator;
+    private bool isPlaying = false; // Faltaba declarar esta variable
+
+    
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        // Validación por si olvidas asignar el AudioSource en el Inspector
+        if (audioHeart == null)
+            audioHeart = GetComponent<AudioSource>();
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-
-        // Calculamos la distancia entre el jugador y el enemigo
+        // Usamos una sola variable para la distancia
         float distancia = Vector3.Distance(jugador.position, enemigo.position);
 
-        if (distancia < distanciaUmbral)
+        if (distancia <= detectionRange)
         {
+            // Control de Animación
             animator.SetBool("Danger", true);
+
+            // Control de Sonido: Solo si no se está reproduciendo ya
+            if (!isPlaying)
+            {
+                audioHeart.Play();
+                isPlaying = true;
+            }
         }
         else
         {
+            // Control de Animación
             animator.SetBool("Danger", false);
-        }
 
+            // Control de Sonido: Detener si se aleja
+            if (isPlaying)
+            {
+                audioHeart.Stop();
+                isPlaying = false;
+            }
+        }
     }
 }
+

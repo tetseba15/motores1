@@ -6,7 +6,7 @@ public class Menu : MonoBehaviour
 {
     public void StarGame()
     {
-        SceneManager.LoadScene("Game");// Escena del juego cuando le damos play
+        SceneManager.LoadScene("CasaTest1");// Escena del juego cuando le damos play
     }
     public void Exit()
     {
