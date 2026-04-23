@@ -33,7 +33,7 @@ public class DangerClose : AudioHeart
         if (distancia <= detectionRange)
         {
             // Control de Animación
-            animator.SetBool("Danger", true);
+            //animator.SetBool("Danger", true);
 
             // Control de Sonido: Solo si no se está reproduciendo ya
             if (!isPlaying)
@@ -45,7 +45,7 @@ public class DangerClose : AudioHeart
         else
         {
             // Control de Animación
-            animator.SetBool("Danger", false);
+            //animator.SetBool("Danger", false);
 
             // Control de Sonido: Detener si se aleja
             if (isPlaying)
