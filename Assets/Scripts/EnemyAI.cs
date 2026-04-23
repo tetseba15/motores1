@@ -5,6 +5,13 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Speed settings")]
+    [SerializeField, Tooltip("Patrol speed")]
+    private float _patrolSpeed = 2f;
+
+    [SerializeField, Tooltip("Chase speed")]
+    private float _chaseSpeed = 5.5f;
+
     private enum AIState { Patrol, Chase, Idle }
 
     [Header("References")]
@@ -133,12 +140,16 @@ public class EnemyAI : MonoBehaviour
 
     private void HandleChase()
     {
+        _agent.speed = _chaseSpeed;
+
         _agent.SetDestination(_playerTransform.position);
     }
 
     private void HandlePatrol()
     {
         if (_patrolWaypoints.Length == 0) return;
+
+        _agent.speed = _patrolSpeed;
 
         if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
         {
