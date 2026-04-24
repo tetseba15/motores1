@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2408181009827532409}
   - component: {fileID: 8292571936918234703}
   - component: {fileID: 7163788012896929388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Battery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
