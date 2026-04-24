@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,10 @@ public class Note : MonoBehaviour, IInteractable
     [SerializeField] private bool _isEndNote = false;
     private bool _mannequinSpawned = false;
     private bool _waitingToRestart = false;
+
+    [Header("Final Note Activator")]
+    [SerializeField] private GameObject _finalNote;
+    [SerializeField] private bool _isKitchenNote = false;
 
     public string GetInteractPrompt()
     {
@@ -34,6 +39,11 @@ public class Note : MonoBehaviour, IInteractable
             if (_isEndNote)
             {
                 _waitingToRestart = true;
+            }
+
+            if (_isKitchenNote)
+            {
+                _finalNote.SetActive(true);
             }
         }
     }

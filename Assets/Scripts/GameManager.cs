@@ -17,8 +17,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     public void GameOver()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+
 }
