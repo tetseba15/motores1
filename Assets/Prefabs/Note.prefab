@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 1e71577c2e6e73e40a1cd21f7b28561c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,3 +130,4 @@ MonoBehaviour:
     nunca me he cruzado con una entidad como \xE9sta.\n\n\nNo s\xE9 si podr\xE9 hacer
     esto solo, tendr\xE9 que llamar al Padre Dami\xE1n para que me d\xE9 una mano."
   _mannequin: {fileID: 0}
+  _isEndNote: 0
