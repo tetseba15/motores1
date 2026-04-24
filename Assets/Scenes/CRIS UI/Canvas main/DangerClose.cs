@@ -8,7 +8,7 @@ public class DangerClose : AudioHeart
     public Transform jugador;
     public Transform enemigo;
     public AudioSource audioHeart; // Asegúrate de arrastrar el AudioSource aquí en el Inspector
-
+    public Animator anim;
     [Header("Configuración")]
     public float detectionRange = 10f;
 
@@ -33,7 +33,7 @@ public class DangerClose : AudioHeart
         if (distancia <= detectionRange)
         {
             // Control de Animación
-            //animator.SetBool("Danger", true);
+            animator.SetBool("CorazonLatido", true);
 
             // Control de Sonido: Solo si no se está reproduciendo ya
             if (!isPlaying)
@@ -45,7 +45,7 @@ public class DangerClose : AudioHeart
         else
         {
             // Control de Animación
-            //animator.SetBool("Danger", false);
+            animator.SetBool("CorazonLatido", false);
 
             // Control de Sonido: Detener si se aleja
             if (isPlaying)
