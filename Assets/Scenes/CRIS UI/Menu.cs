@@ -4,6 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField] private GameObject exitButton;
+
+    private void Start()
+    {
+    #if UNITY_WEBGL
+        exitButton.SetActive(false);
+    #endif
+    }
+
     public void StarGame()
     {
         SceneManager.LoadScene("CasaTest1");// Escena del juego cuando le damos play
@@ -14,7 +23,7 @@ public class Menu : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
     #else
         Application.Quit();
-    #endif 
+    #endif
     }
 
     public void BackTomenu()// option cuando el juego este en pausa
