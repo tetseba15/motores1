@@ -20,17 +20,18 @@ public class Note : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _finalNote;
     [SerializeField] private bool _isKitchenNote = false;
 
-    public string GetInteractPrompt()
+    public string GetInteractPrompt(GameObject interactor)
     {
         return _promptText;
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (!UIManager.Instance.IsReadingNote)
         {
             UIManager.Instance.ShowNote(_noteContent);
             UIManager.Instance.HideInteractPrompt();
+
             if (_mannequin != null && !_mannequinSpawned)
             {
                 _mannequin.SetActive(true);
@@ -41,7 +42,7 @@ public class Note : MonoBehaviour, IInteractable
                 _waitingToRestart = true;
             }
 
-            if (_isKitchenNote)
+            if (_isKitchenNote && _finalNote != null)
             {
                 _finalNote.SetActive(true);
             }

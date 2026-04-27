@@ -5,11 +5,11 @@ public class ItemPickup : MonoBehaviour, IInteractable
     [SerializeField] private PlayerInventory.ItemType _itemType;
     [SerializeField] private string _promptText = "Recoger objeto";
 
-    public string GetInteractPrompt() => _promptText;
+    public string GetInteractPrompt(GameObject interactor) => _promptText;
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
-        PlayerInventory inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        PlayerInventory inventory = interactor.GetComponent<PlayerInventory>();
 
         if (inventory != null)
         {

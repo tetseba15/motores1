@@ -46,7 +46,7 @@ public class PlayerInteractor : MonoBehaviour
                     _currentInteractable = interactable;
 
                     //CALL UIMANAGER TO SHOW THE TEXT
-                    UIManager.Instance.ShowInteractPrompt(_currentInteractable.GetInteractPrompt());
+                    UIManager.Instance.ShowInteractPrompt(_currentInteractable.GetInteractPrompt(gameObject));
                 }
 
                 return;
@@ -66,7 +66,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         if(_inputHandler.IsInteracting && _currentInteractable != null)
         {
-            _currentInteractable.Interact();
+            _currentInteractable.Interact(this.gameObject);
 
 
             //Avoid multiple interactions while pressing the button 

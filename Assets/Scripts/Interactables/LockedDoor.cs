@@ -8,32 +8,33 @@ public class LockedDoor : MonoBehaviour, IInteractable
     [SerializeField] private string _unlockedMessage = "Abrir puerta";
 
     private bool _isOpened = false;
-    private PlayerInventory _playerInventory;
 
-    private void Start()
-    {
-        _playerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-    }
+   
 
-    public string GetInteractPrompt()
+    public string GetInteractPrompt(GameObject interactor)
     {
         if (_isOpened) return "";
 
-        // show block status
-        return _playerInventory.HasItem(_requiredKey) ? _unlockedMessage : _lockedMessage;
+        PlayerInventory inventory = interactor.GetComponent<PlayerInventory>();
+        if (inventory != null)
+        {
+            return inventory.HasItem(_requiredKey) ? _unlockedMessage : _lockedMessage;
+        }
+
+        return _lockedMessage;
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         if (_isOpened) return;
 
-        if (_playerInventory.HasItem(_requiredKey))
+        PlayerInventory inventory = interactor.GetComponent<PlayerInventory>();
+        if (inventory != null && inventory.HasItem(_requiredKey))
         {
             OpenDoor();
         }
         else
         {
-            // SFX
             Debug.Log("La puerta no cede...");
         }
     }
